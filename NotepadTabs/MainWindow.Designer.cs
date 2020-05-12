@@ -28,27 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabCtrl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.tabControl1.SuspendLayout();
+            this.tabCtrl.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabControl1
+            // tabCtrl
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(800, 450);
-            this.tabControl1.TabIndex = 0;
-            this.tabControl1.TabStop = false;
+            this.tabCtrl.Controls.Add(this.tabPage1);
+            this.tabCtrl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabCtrl.HotTrack = true;
+            this.tabCtrl.ImeMode = System.Windows.Forms.ImeMode.Close;
+            this.tabCtrl.Location = new System.Drawing.Point(0, 0);
+            this.tabCtrl.Name = "tabCtrl";
+            this.tabCtrl.SelectedIndex = 0;
+            this.tabCtrl.Size = new System.Drawing.Size(800, 450);
+            this.tabCtrl.TabIndex = 0;
+            this.tabCtrl.TabStop = false;
+            this.tabCtrl.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindow_KeyDown);
             // 
             // tabPage1
             // 
@@ -77,52 +76,27 @@
             this.textBox1.TabIndex = 0;
             this.textBox1.TabStop = false;
             // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.textBox2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(792, 421);
-            this.tabPage2.TabIndex = 0;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox2.Location = new System.Drawing.Point(3, 3);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox2.Size = new System.Drawing.Size(786, 415);
-            this.textBox2.TabIndex = 0;
-            this.textBox2.TabStop = false;
-            // 
-            // Form1
+            // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.tabControl1);
-            this.Name = "Form1";
+            this.Controls.Add(this.tabCtrl);
+            this.Name = "MainWindow";
             this.Text = "NotepadTabs";
-            this.tabControl1.ResumeLayout(false);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindow_KeyDown);
+            this.tabCtrl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tabCtrl;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
     }
 }
 
