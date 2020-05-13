@@ -5,15 +5,50 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace NotepadTabs
 {
     public partial class MainWindow : Form
     {
         //TextBox m_editor[];
+        Font m_CurrentFnt;
+        Color m_CurrentClr;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            ReadConfiguration();
+
+        }
+
+        public void ReadConfiguration()
+        {
+            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+
+            string  FontName;    //string
+            float   FontSize = 0;   //FontSize      // single
+            int     FontStyle;  //FontStyle     //int
+
+            if (string.IsNullOrEmpty(config.AppSettings.Settings["FontName"].Value))
+                FontName = "Consolas";
+            else
+                FontName = config.AppSettings.Settings["FontName"].Value;
+
+            if (string.IsNullOrEmpty(config.AppSettings.Settings["FontSize"].Value))
+                FontSize = 10.8F;
+            else
+                float.TryParse(config.AppSettings.Settings["FontSize"].Value, out FontSize);
+
+            if (string.IsNullOrEmpty(config.AppSettings.Settings["FontStyle"].Value))
+                FontSize = System.Drawing.FontStyle.Regular;
+            else
+                float.TryParse(config.AppSettings.Settings["FontSize"].Value, out FontSize);
+
+
+
+            config.Save(ConfigurationSaveMode.Minimal);
         }
 
         TextBox CreateNewTabTextBox()
@@ -68,6 +103,29 @@ namespace NotepadTabs
             {
                 AddNewTab();
             }
+            else if(e.Control && e.KeyCode == Keys.F)
+            {
+                // get the selected tab font
+                TabPage selectedTabPage = tabCtrl.SelectedTab;
+                if(selectedTabPage != null)
+                {
+                    TextBox selectedTxtBox = (TextBox )selectedTabPage.Controls[0];
+                    if(selectedTxtBox != null)
+                    {
+                        FontDialog fntDlg = new FontDialog();
+
+                        fntDlg.Font = selectedTxtBox.Font;
+                        fntDlg.Color = selectedTxtBox.ForeColor;
+
+                        if(fntDlg.ShowDialog() == DialogResult.OK)
+                        {
+                            selectedTxtBox.Font = fntDlg.Font;
+                            selectedTxtBox.ForeColor = fntDlg.Color;
+                        }
+                    }
+                }
+            }
+
         }
     }
 }
